@@ -1,0 +1,70 @@
+<?php
+namespace app\services;
+
+use app\traits\SingletonTrait;
+
+class DB
+{
+    use SingletonTrait;
+
+    private $config = [
+        'driver' => 'mysql',
+        'host' => 'localhost:8889',
+        'dbname' => 'gbphp',
+        'charset' => 'UTF8',
+        'login' => 'root',
+        'password' => 'root'
+    ];
+
+    private $connection;
+
+    private  function  getConnection() //подключение к базе данных
+    {
+        if(empty($this->connection))
+        {
+            $this->connection = new \PDO(
+                $this->getSDN(),
+                $this->config['login'],
+                $this->config['password']);
+
+            $this->connection->setAttribute(
+                \PDO::ATTR_DEFAULT_FETCH_MODE,
+                \PDO::FETCH_ASSOC); //преобразовываем полученные данные в массив
+        }
+
+        return $this->connection;
+    }
+
+    public function getSDN()
+    {
+        return sprintf(
+            '%s:host=%s;dbname=%s;charset=%s',
+            $this->config['driver'],
+            $this->config['host'],
+            $this->config['dbname'],
+            $this->config['charset']);
+    }
+
+    private function  query($sql, $params = [])
+    {
+        $PDOStatement = $this->getConnection()->prepare($sql); //делаем запрос
+        $PDOStatement -> execute($params); //передаём параметры
+        return $PDOStatement;
+    }
+
+    public function find($sql, $params)
+    {
+
+        return $this -> query($sql, $params) -> fetch(); // получаем необходимую строку из БД
+    }
+
+    public function findAll($sql, $params = [])
+    {
+        return $this -> query($sql, $params) -> fetchAll();
+    }
+
+    public function execute($sql, $params = [])
+    {
+        $this -> query($sql, $params);
+    }
+}
