@@ -1,0 +1,12 @@
+{% extends 'main.twig' %}
+
+{% block title %}{{ good.name}}{% endblock %}
+
+{% block content %}
+<h2>логин: {{ user.login }}</h2>
+<h3>имя: {{ user.name }}</h3>
+<hr>
+{% endblock %}
+<h2>{{ good.name }}</h2>
+<h3>{{ good.price }}</h3>
+<h4>{{ good.info }}/h4>

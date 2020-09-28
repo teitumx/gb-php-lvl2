@@ -1,0 +1,19 @@
+{% extends 'main.twig' %}
+
+ {% block title %}Все товары{% endblock %}
+
+{% block content %}
+{% for good in goods %}
+    <h3>{{ user.login }}</h3>
+    <a href="/user/one?id={{ user.id }}">Подробнее</a>
+    <hr>
+{% else %}
+    <h5>Список пуст</h5>
+{% endfor %}
+{% endblock %}
+
+    <h2>{{ good.name }}</h2>
+    <h3>{{ good.price }}</h3>
+    <h4>{{ good.info}}</h4>
+    <a href="/good/one?id={{ good.id }}">Подробнее</a>
+    <hr>

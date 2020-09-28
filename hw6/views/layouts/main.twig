@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}My Shop{% endblock%}</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="/">Главная</a> </li>
+        <hr>
+        <li><a href="/user/all">Все пользователи</a> </li>
+        <li><a href="/user/one">Один пользователь</a> </li>
+        <li><a href="/user/add">Добавить пользователя</a> </li>
+        <hr>
+        <li><a href="/good/all">Все товары</a> </li>
+        <li><a href="/good/one">Один товар</a> </li>
+        <li><a href="/good/add">Добавить товар</a> </li>
+    </ul>
+{% block content %}{% endblock %}
+</body>
+
+</html>
