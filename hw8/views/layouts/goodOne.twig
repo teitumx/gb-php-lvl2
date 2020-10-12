@@ -1,0 +1,10 @@
+{% extends 'main.twig' %}
+
+{% block title %}{{ good.name}}{% endblock %}
+
+{% block content %}
+<h2>{{ good.name }}</h2>
+<h4>{{ good.info }}</h4>
+<h3>Цена: {{ good.price }}</h3> 
+<a href="/cart/add?id={{ good.id }}">Купить</a>
+{% endblock %}

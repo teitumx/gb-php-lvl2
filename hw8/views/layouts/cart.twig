@@ -1,0 +1,22 @@
+{% extends 'main.twig' %}
+
+{% block title %}Корзина
+{% endblock %}
+
+{% block content %}
+	{% for good in goods %}
+		<h2>Наименование:
+			{{ good.name }}</h2>
+		<p>Цена:
+			{{ good.price }}</p>
+		<p>Количество:
+			{{ good.count}}</p>
+		<hr>
+	{% else %}
+		<h5>Список пуст</h5>
+	{% endfor %}
+	{% if goods is not empty %}
+		<a href="/cart/clean">Очистить корзину</a>
+		<a href="/cart/makeOrder">Оформить заказ</a>
+	{% endif %}
+{% endblock %}
